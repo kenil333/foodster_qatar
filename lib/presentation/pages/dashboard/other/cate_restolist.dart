@@ -71,9 +71,12 @@ class _CateRestolistScreenState extends State<CateRestolistScreen> {
           if (listsnap.connectionState == ConnectionState.waiting) {
             return loadingwidget();
           } else if (listsnap.data!.isEmpty) {
-            return nodatafound(
-              restolistemptystr[_globalcache.selectedlanguage.value]!,
-              size,
+            return Center(
+              child: nodatafound(
+                _globalcache.appstringrx[40]
+                    .string[_globalcache.selectedlanguage.value]!,
+                size,
+              ),
             );
           } else {
             return ListView.builder(

@@ -99,8 +99,8 @@ class _SearchPageState extends State<SearchPage> {
                               _searchst.sink.add(value);
                             },
                             decoration: InputDecoration(
-                              hintText: searchstr[
-                                  _globalcache.selectedlanguage.value],
+                              hintText: _globalcache.appstringrx[12]
+                                  .string[_globalcache.selectedlanguage.value],
                               border: InputBorder.none,
                             ),
                           ),
@@ -116,20 +116,24 @@ class _SearchPageState extends State<SearchPage> {
                     String _getstr() {
                       String _str = "";
                       if (_globalcache.searchoprx.value ==
-                          restaurantsstr[englishlangstr]) {
-                        _str = restaurantsstr[englishlangstr]!;
+                          _globalcache.appstringrx[8].string[englishlangstr]) {
+                        _str =
+                            _globalcache.appstringrx[8].string[englishlangstr]!;
                       }
                       if (_globalcache.searchoprx.value ==
-                          restaurantsstr[arabiclangstr]) {
-                        _str = restaurantsstr[arabiclangstr]!;
+                          _globalcache.appstringrx[8].string[arabiclangstr]) {
+                        _str =
+                            _globalcache.appstringrx[8].string[arabiclangstr]!;
                       }
                       if (_globalcache.searchoprx.value ==
-                          dishstr[englishlangstr]) {
-                        _str = dishstr[englishlangstr]!;
+                          _globalcache.appstringrx[20].string[englishlangstr]) {
+                        _str = _globalcache
+                            .appstringrx[20].string[englishlangstr]!;
                       }
                       if (_globalcache.searchoprx.value ==
-                          dishstr[arabiclangstr]) {
-                        _str = dishstr[arabiclangstr]!;
+                          _globalcache.appstringrx[20].string[arabiclangstr]) {
+                        _str =
+                            _globalcache.appstringrx[20].string[arabiclangstr]!;
                       }
                       return _str;
                     }
@@ -140,17 +144,19 @@ class _SearchPageState extends State<SearchPage> {
                         () => FilterDilog(
                           size: widget.size,
                           title:
-                              "${selectsearchoptionstr[_globalcache.selectedlanguage.value]!} ${_getstr()}",
+                              "${_globalcache.appstringrx[41].string[_globalcache.selectedlanguage.value]!} ${_getstr()}",
                           filterlits: [
-                            restaurantsstr[
-                                _globalcache.selectedlanguage.value]!,
-                            dishstr[_globalcache.selectedlanguage.value]!,
+                            _globalcache.appstringrx[8]
+                                .string[_globalcache.selectedlanguage.value]!,
+                            _globalcache.appstringrx[20]
+                                .string[_globalcache.selectedlanguage.value]!,
                           ],
                           initialvalue: _globalcache.searchoprx.value,
                           onok: (String selected) {
                             _globalcache.changesearchoprx(selected);
                           },
-                          btntxt: okstr[_globalcache.selectedlanguage.value]!,
+                          btntxt: _globalcache.appstringrx[44]
+                              .string[_globalcache.selectedlanguage.value]!,
                         ),
                       ),
                     );
@@ -180,9 +186,11 @@ class _SearchPageState extends State<SearchPage> {
                         () {
                           Set<Marker> _markers = <Marker>{};
                           if (_globalcache.searchoprx.value ==
-                                  restaurantsstr[englishlangstr] ||
+                                  _globalcache
+                                      .appstringrx[8].string[englishlangstr] ||
                               _globalcache.searchoprx.value ==
-                                  restaurantsstr[arabiclangstr]) {
+                                  _globalcache
+                                      .appstringrx[8].string[arabiclangstr]) {
                             for (int i = 0;
                                 i < _globalcache.resturantlistrx.length;
                                 i++) {

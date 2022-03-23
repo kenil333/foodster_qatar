@@ -117,7 +117,8 @@ class _DetailScreenState extends State<DetailScreen> {
                 children: [
                   CustomSmallTexticonbtn(
                     size: size,
-                    title: mapstr[_globalcache.selectedlanguage.value]!,
+                    title: _globalcache.appstringrx[16]
+                        .string[_globalcache.selectedlanguage.value]!,
                     icon: Icons.map_outlined,
                     onclick: () async {
                       await FirebaseHelper.increaserestomapfire(
@@ -130,13 +131,14 @@ class _DetailScreenState extends State<DetailScreen> {
                   SizedBox(width: size.width * 0.04),
                   CustomSmallTexticonbtn(
                     size: size,
-                    title: sharestr[_globalcache.selectedlanguage.value]!,
+                    title: _globalcache.appstringrx[17]
+                        .string[_globalcache.selectedlanguage.value]!,
                     icon: Icons.share,
                     onclick: () async {
                       await FirebaseHelper.increaserestosharefire(
                           widget.resto.id);
                       Share.share(
-                          "${widget.resto.name[_globalcache.selectedlanguage.value]}\n\n\n${widget.resto.description[_globalcache.selectedlanguage.value]}\n\n\n${timingstr[_globalcache.selectedlanguage.value]}:\n${widget.resto.timming[_globalcache.selectedlanguage.value]}\n\n\n${locationstr[_globalcache.selectedlanguage.value]}:\n${widget.resto.location[_globalcache.selectedlanguage.value]}\n\n\n${viewonmapstr[_globalcache.selectedlanguage.value]}:\nhttps://www.google.com/maps/search/?api=1&query=${widget.resto.latitude},${widget.resto.longitude}\n\n\nTo Download the App, Please click on the below link:\n\n${_globalcache.applinkrx.value}");
+                          "${widget.resto.name[_globalcache.selectedlanguage.value]}\n\n\n${widget.resto.description[_globalcache.selectedlanguage.value]}\n\n\n${_globalcache.appstringrx[24].string[_globalcache.selectedlanguage.value]}:\n${widget.resto.timming[_globalcache.selectedlanguage.value]}\n\n\n${_globalcache.appstringrx[25].string[_globalcache.selectedlanguage.value]}:\n${widget.resto.location[_globalcache.selectedlanguage.value]}\n\n\n${_globalcache.appstringrx[28].string[_globalcache.selectedlanguage.value]}:\nhttps://www.google.com/maps/search/?api=1&query=${widget.resto.latitude},${widget.resto.longitude}\n\n\nTo Download the App, Please click on the below link:\n\n${_globalcache.applinkrx.value}");
                     },
                   ),
                 ],
@@ -229,7 +231,8 @@ class _DetailScreenState extends State<DetailScreen> {
                 children: [
                   CustomLableUnderline(
                     size: size,
-                    title: descriptionstr[_globalcache.selectedlanguage.value]!,
+                    title: _globalcache.appstringrx[23]
+                        .string[_globalcache.selectedlanguage.value]!,
                   ),
                   const SizedBox(height: 10),
                   Text(
@@ -265,8 +268,8 @@ class _DetailScreenState extends State<DetailScreen> {
                         children: [
                           CustomLableUnderline(
                             size: size,
-                            title:
-                                timingstr[_globalcache.selectedlanguage.value]!,
+                            title: _globalcache.appstringrx[24]
+                                .string[_globalcache.selectedlanguage.value]!,
                           ),
                           const SizedBox(height: 10),
                           Text(
@@ -290,8 +293,8 @@ class _DetailScreenState extends State<DetailScreen> {
                       children: [
                         CustomLableUnderline(
                           size: size,
-                          title:
-                              locationstr[_globalcache.selectedlanguage.value]!,
+                          title: _globalcache.appstringrx[25]
+                              .string[_globalcache.selectedlanguage.value]!,
                         ),
                         const SizedBox(height: 10),
                         Text(
@@ -323,7 +326,8 @@ class _DetailScreenState extends State<DetailScreen> {
                 children: [
                   CustomLableUnderline(
                     size: size,
-                    title: menustr[_globalcache.selectedlanguage.value]!,
+                    title: _globalcache.appstringrx[19]
+                        .string[_globalcache.selectedlanguage.value]!,
                   ),
                   const SizedBox(height: 20),
                   StreamBuilder<List<DishModel>>(
@@ -331,7 +335,10 @@ class _DetailScreenState extends State<DetailScreen> {
                     initialData: const [],
                     builder: (context, listsnap) {
                       if (listsnap.data!.isEmpty) {
-                        return nodatafound("Dish List is Empty !", size);
+                        return nodatafound(
+                            _globalcache.appstringrx[47]
+                                .string[_globalcache.selectedlanguage.value]!,
+                            size);
                       } else {
                         return GridView.builder(
                           shrinkWrap: true,

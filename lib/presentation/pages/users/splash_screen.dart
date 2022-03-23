@@ -45,6 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(const Duration(seconds: 2)).then((_) async {
       // getpermission(() {
+      _globalcache.changeappstring(await FirebaseHelper.getappstrings());
       _bloc.autologin(
         () {
           routepushreplash(context, const BottomBar());
@@ -64,8 +65,12 @@ class _SplashScreenState extends State<SplashScreen> {
         (String choosedlang) {
           _globalcache.changeselectedlanguage(choosedlang);
           _globalcache.changesearchoprx(
-            restaurantsstr[_globalcache.selectedlanguage.value]!,
+            _globalcache
+                .appstringrx[8].string[_globalcache.selectedlanguage.value]!,
           );
+        },
+        () {
+          _globalcache.changegeust(true);
         },
       );
       // });

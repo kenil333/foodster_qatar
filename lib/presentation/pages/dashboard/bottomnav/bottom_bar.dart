@@ -77,31 +77,36 @@ class _BottomBarState extends State<BottomBar> {
                 items: [
                   PersistentBottomNavBarItem(
                     icon: const Icon(Icons.home_rounded),
-                    title: homestr[_globalcache.selectedlanguage.value]!,
+                    title: _globalcache.appstringrx[9]
+                        .string[_globalcache.selectedlanguage.value]!,
                     activeColorPrimary: primarycol,
                     inactiveColorPrimary: grycol,
                   ),
                   PersistentBottomNavBarItem(
                     icon: const Icon(Icons.menu_rounded),
-                    title: categoriestr[_globalcache.selectedlanguage.value]!,
+                    title: _globalcache.appstringrx[10]
+                        .string[_globalcache.selectedlanguage.value]!,
                     activeColorPrimary: primarycol,
                     inactiveColorPrimary: grycol,
                   ),
                   PersistentBottomNavBarItem(
                     icon: const Icon(Icons.bookmark_border_rounded),
-                    title: bookmarkstr[_globalcache.selectedlanguage.value]!,
+                    title: _globalcache.appstringrx[11]
+                        .string[_globalcache.selectedlanguage.value]!,
                     activeColorPrimary: primarycol,
                     inactiveColorPrimary: grycol,
                   ),
                   PersistentBottomNavBarItem(
                     icon: const Icon(Icons.search_rounded),
-                    title: searchstr[_globalcache.selectedlanguage.value]!,
+                    title: _globalcache.appstringrx[12]
+                        .string[_globalcache.selectedlanguage.value]!,
                     activeColorPrimary: primarycol,
                     inactiveColorPrimary: grycol,
                   ),
                   PersistentBottomNavBarItem(
                     icon: const Icon(Icons.person_outline_rounded),
-                    title: profilestr[_globalcache.selectedlanguage.value]!,
+                    title: _globalcache.appstringrx[13]
+                        .string[_globalcache.selectedlanguage.value]!,
                     activeColorPrimary: primarycol,
                     inactiveColorPrimary: grycol,
                   ),

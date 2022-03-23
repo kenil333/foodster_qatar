@@ -64,6 +64,13 @@ class _CateDishListScrenState extends State<CateDishListScren> {
           builder: (context, listsnap) {
             if (listsnap.connectionState == ConnectionState.waiting) {
               return loadingwidget();
+            } else if (listsnap.data!.isEmpty) {
+              return Center(
+                child: nodatafound(
+                    _globalcache.appstringrx[47]
+                        .string[_globalcache.selectedlanguage.value]!,
+                    size),
+              );
             } else {
               return GridView.builder(
                 padding: EdgeInsets.symmetric(

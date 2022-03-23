@@ -9,6 +9,7 @@ class GlobalCache extends GetxController {
   RxString usernamerx = "".obs;
   RxString useremailrx = "".obs;
   RxString userphonerx = "".obs;
+  RxBool geustrx = false.obs;
   // RxDouble latituderx = 0.0.obs;
   // RxDouble longituderx = 0.0.obs;
   RxString selbookmark = "A to Z".obs;
@@ -22,6 +23,11 @@ class GlobalCache extends GetxController {
   RxList<BookmarkModel> favrestolistrx = <BookmarkModel>[].obs;
   RxList<BookmarkModel> favdishlistrx = <BookmarkModel>[].obs;
   RxString applinkrx = "".obs;
+  RxList<AppString> appstringrx = <AppString>[].obs;
+
+  changegeust(bool value) => geustrx.value = value;
+
+  changeappstring(List<AppString> list) => appstringrx.value = list;
 
   changeuserdata(String idi, String namei, String emaili, String phonei) {
     useridrx.value = idi;

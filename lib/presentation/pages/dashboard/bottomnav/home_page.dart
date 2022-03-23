@@ -83,7 +83,7 @@ class HomePage extends StatelessWidget {
                             const SizedBox(height: 20),
                             Obx(
                               () => Text(
-                                bannerlistemtystr[
+                                _globalcache.appstringrx[39].string[
                                     _globalcache.selectedlanguage.value]!,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -121,8 +121,8 @@ class HomePage extends StatelessWidget {
                       )
                     : Obx(
                         () => nodatafound(
-                            restolistemptystr[
-                                _globalcache.selectedlanguage.value]!,
+                            _globalcache.appstringrx[40]
+                                .string[_globalcache.selectedlanguage.value]!,
                             size),
                       ),
               ],

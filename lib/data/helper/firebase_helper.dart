@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_database/firebase_database.dart';
+// import 'package:foodster/data/constant/dummy_const.dart';
 import 'package:foodster/data/datamodel/notification_model.dart';
 import 'package:intl/intl.dart';
 
@@ -34,6 +35,7 @@ class FirebaseHelper {
     String phone,
     String email,
     String date,
+    Function setcache,
   ) async {
     final DatabaseEvent _find =
         await _fire.ref("Users").orderByChild("Phone").equalTo(phone).once();
@@ -45,6 +47,13 @@ class FirebaseHelper {
         "Date": date,
         "UserSection": "Customer",
       });
+      await _fire.ref("Users").orderByChild("Phone").equalTo(phone).once().then(
+        (DatabaseEvent event) {
+          (event.snapshot.value as Map).forEach((key, value) {
+            setcache(key, value["Name"], value["Email"], value["Phone"]);
+          });
+        },
+      );
       return true;
     } else {
       return false;
@@ -264,31 +273,76 @@ class FirebaseHelper {
   ///User data Changes
 
   static Future<void> increaserestoviewuserfire(String id) async {
-    await _fire
-        .ref("Users/$id/Analytics/RestoView")
-        .push()
-        .set(DateFormat("yyyyMMdd").format(DateTime.now()));
+    if (id.isNotEmpty) {
+      await _fire
+          .ref("Users/$id/Analytics/RestoView")
+          .push()
+          .set(DateFormat("yyyyMMdd").format(DateTime.now()));
+    } else {
+      await _fire
+          .ref("Users/-Mcbcthusgj3234guest/Analytics/RestoView")
+          .push()
+          .set(DateFormat("yyyyMMdd").format(DateTime.now()));
+    }
   }
 
   static Future<void> increasedishviewuserfire(String id) async {
-    await _fire
-        .ref("Users/$id/Analytics/DishView")
-        .push()
-        .set(DateFormat("yyyyMMdd").format(DateTime.now()));
+    if (id.isNotEmpty) {
+      await _fire
+          .ref("Users/$id/Analytics/DishView")
+          .push()
+          .set(DateFormat("yyyyMMdd").format(DateTime.now()));
+    } else {
+      await _fire
+          .ref("Users/-Mcbcthusgj3234guest/Analytics/DishView")
+          .push()
+          .set(DateFormat("yyyyMMdd").format(DateTime.now()));
+    }
   }
 
   static Future<void> increaserestobookmarkuserfire(String id) async {
-    await _fire
-        .ref("Users/$id/Analytics/RestoBookmark")
-        .push()
-        .set(DateFormat("yyyyMMdd").format(DateTime.now()));
+    if (id.isNotEmpty) {
+      await _fire
+          .ref("Users/$id/Analytics/RestoBookmark")
+          .push()
+          .set(DateFormat("yyyyMMdd").format(DateTime.now()));
+    } else {
+      await _fire
+          .ref("Users/-Mcbcthusgj3234guest/Analytics/RestoBookmark")
+          .push()
+          .set(DateFormat("yyyyMMdd").format(DateTime.now()));
+    }
   }
 
   static Future<void> increasedishbookmarkuserfire(String id) async {
-    await _fire
-        .ref("Users/$id/Analytics/DishBookmark")
-        .push()
-        .set(DateFormat("yyyyMMdd").format(DateTime.now()));
+    if (id.isNotEmpty) {
+      await _fire
+          .ref("Users/$id/Analytics/DishBookmark")
+          .push()
+          .set(DateFormat("yyyyMMdd").format(DateTime.now()));
+    } else {
+      await _fire
+          .ref("Users/-Mcbcthusgj3234guest/Analytics/DishBookmark")
+          .push()
+          .set(DateFormat("yyyyMMdd").format(DateTime.now()));
+    }
+  }
+
+  // static Future<void> addintofirebasestr() async {
+  //   for (int i = 0; i < doremon.length; i++) {
+  //     await _fire.ref("AppString/$i").set(
+  //           doremon[i],
+  //         );
+  //   }
+  // }
+
+  static Future<List<AppString>> getappstrings() async {
+    List<AppString> _list = [];
+    final DatabaseEvent _event = await _fire.ref("AppString").once();
+    _list = (_event.snapshot.value as List)
+        .map((e) => AppString.fromfire(e))
+        .toList();
+    return _list;
   }
 
   // static Future<void> increaserestoviewfire(String id) async {

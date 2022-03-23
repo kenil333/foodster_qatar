@@ -73,6 +73,7 @@ export './../data/datamodel/banner_model.dart';
 export './../data/datamodel/bookmark_model.dart';
 export './../data/datamodel/page_model.dart';
 export './../data/datamodel/search_model.dart';
+export './../data/datamodel/appstring.dart';
 
 export './../presentation/bloc/user/signup_bloc.dart';
 export './../presentation/bloc/user/splash_bloc.dart';

@@ -32,7 +32,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       appBar: AppBar(
         backgroundColor: primarycol,
         title: Text(
-          editprofilestr[_globalcache.selectedlanguage.value]!,
+          _globalcache
+              .appstringrx[21].string[_globalcache.selectedlanguage.value]!,
           style: const TextStyle(
             fontFamily: secondaryfontfamily,
           ),
@@ -50,7 +51,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             CustomTextfeild(
               size: size,
-              hintstr: namestr[_globalcache.selectedlanguage.value]!,
+              hintstr: _globalcache
+                  .appstringrx[2].string[_globalcache.selectedlanguage.value]!,
               controller: _bloc.namecont,
               language: _globalcache.selectedlanguage.value,
             ),
@@ -62,7 +64,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             CustomTextfeild(
               size: size,
-              hintstr: phonenumberstr[_globalcache.selectedlanguage.value]!,
+              hintstr: _globalcache
+                  .appstringrx[3].string[_globalcache.selectedlanguage.value]!,
               controller: _bloc.phonecont,
               language: _globalcache.selectedlanguage.value,
               number: true,
@@ -78,7 +81,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             CustomTextfeild(
               size: size,
-              hintstr: emailstr[_globalcache.selectedlanguage.value]!,
+              hintstr: _globalcache
+                  .appstringrx[6].string[_globalcache.selectedlanguage.value]!,
               controller: _bloc.emailcont,
               language: _globalcache.selectedlanguage.value,
             ),
@@ -92,7 +96,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 } else {
                   return CustomButton(
                     size: size,
-                    title: editstr[_globalcache.selectedlanguage.value]!,
+                    title: _globalcache.appstringrx[22]
+                        .string[_globalcache.selectedlanguage.value]!,
                     func: () {
                       _bloc.updateprofile(
                         _globalcache.useridrx.value,

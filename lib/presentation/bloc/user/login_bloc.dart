@@ -24,6 +24,7 @@ class LoginBloc {
                 await SharedPreferences.getInstance();
             await _pref.setString("Name", name.text);
             await _pref.setString("Phone", phone.text);
+            await _pref.setBool("Guest", false);
             loading.sink.add(false);
             forward();
           } else {

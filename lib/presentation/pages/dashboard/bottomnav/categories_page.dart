@@ -182,7 +182,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
               SingleChildScrollView(
             child: StreamBuilder<String?>(
                 stream: _selcted.stream,
-                initialData: restaurantsstr[englishlangstr],
+                initialData: _globalcache.appstringrx[8].string[englishlangstr],
                 builder: (context, selstrsnap) {
                   return Column(
                     children: [
@@ -204,8 +204,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
                             Expanded(
                               child: InkWell(
                                 onTap: () {
-                                  _selcted.sink
-                                      .add(restaurantsstr[englishlangstr]!);
+                                  _selcted.sink.add(_globalcache
+                                      .appstringrx[8].string[englishlangstr]!);
                                 },
                                 child: Container(
                                   width: double.infinity,
@@ -215,17 +215,20 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     color: selstrsnap.data ==
-                                            restaurantsstr[englishlangstr]!
+                                            _globalcache.appstringrx[8]
+                                                .string[englishlangstr]!
                                         ? primarycol
                                         : Colors.transparent,
                                   ),
                                   child: Center(
                                     child: Text(
-                                      restaurantsstr[englishlangstr]!,
+                                      _globalcache.appstringrx[8].string[
+                                          _globalcache.selectedlanguage.value]!,
                                       style: TextStyle(
                                         fontSize: widget.size.width * 0.038,
                                         color: selstrsnap.data ==
-                                                restaurantsstr[englishlangstr]!
+                                                _globalcache.appstringrx[8]
+                                                    .string[englishlangstr]!
                                             ? whit
                                             : primarycol,
                                         fontWeight: FontWeight.bold,
@@ -238,7 +241,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
                             Expanded(
                               child: InkWell(
                                 onTap: () {
-                                  _selcted.sink.add(dishstr[englishlangstr]!);
+                                  _selcted.sink.add(_globalcache
+                                      .appstringrx[20].string[englishlangstr]!);
                                 },
                                 child: Container(
                                   width: double.infinity,
@@ -248,17 +252,20 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     color: selstrsnap.data ==
-                                            dishstr[englishlangstr]!
+                                            _globalcache.appstringrx[20]
+                                                .string[englishlangstr]!
                                         ? primarycol
                                         : Colors.transparent,
                                   ),
                                   child: Center(
                                     child: Text(
-                                      dishstr[englishlangstr]!,
+                                      _globalcache.appstringrx[20].string[
+                                          _globalcache.selectedlanguage.value]!,
                                       style: TextStyle(
                                         fontSize: widget.size.width * 0.038,
                                         color: selstrsnap.data ==
-                                                dishstr[englishlangstr]!
+                                                _globalcache.appstringrx[20]
+                                                    .string[englishlangstr]!
                                             ? whit
                                             : primarycol,
                                         fontWeight: FontWeight.bold,
@@ -271,7 +278,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
                           ],
                         ),
                       ),
-                      selstrsnap.data == restaurantsstr[englishlangstr]
+                      selstrsnap.data ==
+                              _globalcache.appstringrx[8].string[englishlangstr]
                           ? Obx(
                               () => _globalcache.caterestolistrx.isNotEmpty
                                   ? ListView.builder(
@@ -304,7 +312,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                       ),
                                     )
                                   : nodatafound(
-                                      categorylistemptystr[
+                                      _globalcache.appstringrx[38].string[
                                           _globalcache.selectedlanguage.value]!,
                                       widget.size),
                             )
@@ -340,7 +348,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                       ),
                                     )
                                   : nodatafound(
-                                      categorylistemptystr[
+                                      _globalcache.appstringrx[38].string[
                                           _globalcache.selectedlanguage.value]!,
                                       widget.size),
                             ),

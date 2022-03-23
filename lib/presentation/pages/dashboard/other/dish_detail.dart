@@ -266,7 +266,8 @@ class _DishDetailScreenState extends State<DishDetailScreen> {
                 children: [
                   CustomLableUnderline(
                     size: size,
-                    title: descriptionstr[_globalcache.selectedlanguage.value]!,
+                    title: _globalcache.appstringrx[23]
+                        .string[_globalcache.selectedlanguage.value]!,
                   ),
                   const SizedBox(height: 10),
                   Text(
@@ -285,7 +286,8 @@ class _DishDetailScreenState extends State<DishDetailScreen> {
             const SizedBox(height: 20),
             CustomButton(
               size: size,
-              title: gotorestostr[_globalcache.selectedlanguage.value]!,
+              title: _globalcache
+                  .appstringrx[26].string[_globalcache.selectedlanguage.value]!,
               func: () {
                 final int _index = _globalcache.resturantlistrx
                     .indexWhere((e) => e.id == widget.dish.restoid);

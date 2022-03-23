@@ -16,7 +16,8 @@ class LanguageSelectScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: primarycol,
         title: Text(
-          selectlanguagestr[_globalcache.selectedlanguage.value]!,
+          _globalcache
+              .appstringrx[0].string[_globalcache.selectedlanguage.value]!,
           style: const TextStyle(
             fontFamily: secondaryfontfamily,
           ),

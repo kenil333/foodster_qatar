@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import './../../../domain/all.dart';
 
@@ -36,7 +37,8 @@ class _LoginScreenState extends State<LoginScreen> {
         appBar: AppBar(
           backgroundColor: primarycol,
           title: Text(
-            signinstr[_globalcache.selectedlanguage.value]!,
+            _globalcache
+                .appstringrx[1].string[_globalcache.selectedlanguage.value]!,
             style: const TextStyle(
               fontFamily: secondaryfontfamily,
             ),
@@ -51,14 +53,16 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 20),
               CustomTextfeild(
                 size: size,
-                hintstr: namestr[_globalcache.selectedlanguage.value]!,
+                hintstr: _globalcache.appstringrx[2]
+                    .string[_globalcache.selectedlanguage.value]!,
                 controller: _bloc.name,
                 language: _globalcache.selectedlanguage.value,
               ),
               const SizedBox(height: 10),
               CustomTextfeild(
                 size: size,
-                hintstr: phonenumberstr[_globalcache.selectedlanguage.value]!,
+                hintstr: _globalcache.appstringrx[3]
+                    .string[_globalcache.selectedlanguage.value]!,
                 controller: _bloc.phone,
                 language: _globalcache.selectedlanguage.value,
                 number: true,
@@ -73,7 +77,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   } else {
                     return CustomButton(
                       size: size,
-                      title: signinstr[_globalcache.selectedlanguage.value]!,
+                      title: _globalcache.appstringrx[1]
+                          .string[_globalcache.selectedlanguage.value]!,
                       func: () {
                         _bloc.login(
                           () {
@@ -88,6 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           (String id, String name, String email, String phone) {
                             _globalcache.changeuserdata(id, name, email, phone);
+                            _globalcache.changegeust(false);
                           },
                         );
                       },
@@ -99,13 +105,45 @@ class _LoginScreenState extends State<LoginScreen> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
                 child: Text(
-                  termsofconditionstr[_globalcache.selectedlanguage.value]!,
+                  _globalcache.appstringrx[4]
+                      .string[_globalcache.selectedlanguage.value]!,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: size.width * 0.036,
                     color: grycol,
                   ),
                 ),
+              ),
+              const SizedBox(height: 30),
+              Row(
+                children: [
+                  Expanded(child: Container()),
+                  InkWell(
+                    onTap: () async {
+                      final SharedPreferences _pref =
+                          await SharedPreferences.getInstance();
+                      await _pref.setBool("Guest", true);
+                      _globalcache.changegeust(true);
+                      Navigator.pushAndRemoveUntil<dynamic>(
+                        context,
+                        MaterialPageRoute<dynamic>(
+                          builder: (BuildContext context) => const BottomBar(),
+                        ),
+                        (route) => false,
+                      );
+                    },
+                    child: Text(
+                      _globalcache.appstringrx[45]
+                          .string[_globalcache.selectedlanguage.value]!,
+                      style: TextStyle(
+                        fontSize: size.width * 0.04,
+                        color: primarycol,
+                        fontFamily: secondaryfontfamily,
+                      ),
+                    ),
+                  ),
+                  Expanded(child: Container()),
+                ],
               ),
               const SizedBox(height: 50),
             ],

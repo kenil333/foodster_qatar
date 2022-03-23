@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import './../../../domain/all.dart';
 
@@ -28,7 +29,8 @@ class _SignupScreenState extends State<SignupScreen> {
       appBar: AppBar(
         backgroundColor: primarycol,
         title: Text(
-          signupstr[_globalcache.selectedlanguage.value]!,
+          _globalcache
+              .appstringrx[5].string[_globalcache.selectedlanguage.value]!,
           style: const TextStyle(
             fontFamily: secondaryfontfamily,
           ),
@@ -52,7 +54,8 @@ class _SignupScreenState extends State<SignupScreen> {
               children: [
                 CustomTextfeild(
                   size: size,
-                  hintstr: namestr[_globalcache.selectedlanguage.value]!,
+                  hintstr: _globalcache.appstringrx[2]
+                      .string[_globalcache.selectedlanguage.value]!,
                   controller: _bloc.name,
                   language: _globalcache.selectedlanguage.value,
                 ),
@@ -75,7 +78,8 @@ class _SignupScreenState extends State<SignupScreen> {
               children: [
                 CustomTextfeild(
                   size: size,
-                  hintstr: phonenumberstr[_globalcache.selectedlanguage.value]!,
+                  hintstr: _globalcache.appstringrx[3]
+                      .string[_globalcache.selectedlanguage.value]!,
                   controller: _bloc.phone,
                   language: _globalcache.selectedlanguage.value,
                   number: true,
@@ -98,7 +102,7 @@ class _SignupScreenState extends State<SignupScreen> {
             CustomTextfeild(
               size: size,
               hintstr:
-                  "${emailstr[_globalcache.selectedlanguage.value]!}   ${_globalcache.selectedlanguage.value == englishlangstr ? "( optional )" : "( اختياري )"}   ",
+                  "${_globalcache.appstringrx[6].string[_globalcache.selectedlanguage.value]!}   ${_globalcache.selectedlanguage.value == englishlangstr ? "( optional )" : "( اختياري )"}   ",
               controller: _bloc.email,
               language: _globalcache.selectedlanguage.value,
             ),
@@ -106,7 +110,8 @@ class _SignupScreenState extends State<SignupScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
               child: Text(
-                termsofconditionstr[_globalcache.selectedlanguage.value]!,
+                _globalcache.appstringrx[4]
+                    .string[_globalcache.selectedlanguage.value]!,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: size.width * 0.036,
@@ -124,18 +129,25 @@ class _SignupScreenState extends State<SignupScreen> {
                 } else {
                   return CustomButton(
                     size: size,
-                    title: signupstr[_globalcache.selectedlanguage.value]!,
+                    title: _globalcache.appstringrx[5]
+                        .string[_globalcache.selectedlanguage.value]!,
                     func: () {
-                      _bloc.signup(() {
-                        Navigator.pushAndRemoveUntil<dynamic>(
-                          context,
-                          MaterialPageRoute<dynamic>(
-                            builder: (BuildContext context) =>
-                                const BottomBar(),
-                          ),
-                          (route) => false,
-                        );
-                      });
+                      _bloc.signup(
+                        () {
+                          Navigator.pushAndRemoveUntil<dynamic>(
+                            context,
+                            MaterialPageRoute<dynamic>(
+                              builder: (BuildContext context) =>
+                                  const BottomBar(),
+                            ),
+                            (route) => false,
+                          );
+                        },
+                        (String id, String name, String email, String phone) {
+                          _globalcache.changeuserdata(id, name, email, phone);
+                          _globalcache.changegeust(false);
+                        },
+                      );
                     },
                   );
                 }
@@ -147,7 +159,8 @@ class _SignupScreenState extends State<SignupScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  alredyhaveaccountstr[_globalcache.selectedlanguage.value]!,
+                  _globalcache.appstringrx[7]
+                      .string[_globalcache.selectedlanguage.value]!,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: size.width * 0.036,
@@ -160,7 +173,8 @@ class _SignupScreenState extends State<SignupScreen> {
                     routepush(context, const LoginScreen(show: true));
                   },
                   child: Text(
-                    signinstr[_globalcache.selectedlanguage.value]!,
+                    _globalcache.appstringrx[1]
+                        .string[_globalcache.selectedlanguage.value]!,
                     style: TextStyle(
                       fontSize: size.width * 0.038,
                       color: primarycol,
@@ -168,6 +182,37 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                 ),
+              ],
+            ),
+            const SizedBox(height: 30),
+            Row(
+              children: [
+                Expanded(child: Container()),
+                InkWell(
+                  onTap: () async {
+                    final SharedPreferences _pref =
+                        await SharedPreferences.getInstance();
+                    await _pref.setBool("Guest", true);
+                    _globalcache.changegeust(true);
+                    Navigator.pushAndRemoveUntil<dynamic>(
+                      context,
+                      MaterialPageRoute<dynamic>(
+                        builder: (BuildContext context) => const BottomBar(),
+                      ),
+                      (route) => false,
+                    );
+                  },
+                  child: Text(
+                    _globalcache.appstringrx[45]
+                        .string[_globalcache.selectedlanguage.value]!,
+                    style: TextStyle(
+                      fontSize: size.width * 0.04,
+                      color: primarycol,
+                      fontFamily: secondaryfontfamily,
+                    ),
+                  ),
+                ),
+                Expanded(child: Container()),
               ],
             ),
             const SizedBox(height: 60),

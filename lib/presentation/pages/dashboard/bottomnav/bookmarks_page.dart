@@ -63,20 +63,21 @@ class _BookmarksPageState extends State<BookmarksPage>
                               builder: (context) => Obx(
                                 () => FilterDilog(
                                   size: widget.size,
-                                  title: selectoptionstr[
+                                  title: _globalcache.appstringrx[37].string[
                                       _globalcache.selectedlanguage.value]!,
                                   filterlits: [
-                                    dataddedstr[
+                                    _globalcache.appstringrx[42].string[
                                         _globalcache.selectedlanguage.value]!,
-                                    atozstr[
+                                    _globalcache.appstringrx[43].string[
                                         _globalcache.selectedlanguage.value]!,
                                   ],
                                   initialvalue: _globalcache.selbookmark.value,
                                   onok: (String selected) {
                                     _globalcache.changeselbookmark(selected);
                                     if (selected ==
-                                        dataddedstr[_globalcache
-                                            .selectedlanguage.value]!) {
+                                        _globalcache.appstringrx[42].string[
+                                            _globalcache
+                                                .selectedlanguage.value]!) {
                                       if (_globalcache.favrestolistrx.length >
                                           1) {
                                         _globalcache.favrestolistrx.sort(
@@ -104,7 +105,7 @@ class _BookmarksPageState extends State<BookmarksPage>
                                       }
                                     }
                                   },
-                                  btntxt: okstr[
+                                  btntxt: _globalcache.appstringrx[44].string[
                                       _globalcache.selectedlanguage.value]!,
                                 ),
                               ),
@@ -147,10 +148,12 @@ class _BookmarksPageState extends State<BookmarksPage>
                 ),
                 tabs: [
                   Tab(
-                    text: restaurantsstr[_globalcache.selectedlanguage.value],
+                    text: _globalcache.appstringrx[8]
+                        .string[_globalcache.selectedlanguage.value],
                   ),
                   Tab(
-                    text: dishstr[_globalcache.selectedlanguage.value],
+                    text: _globalcache.appstringrx[20]
+                        .string[_globalcache.selectedlanguage.value],
                   ),
                 ],
               ),
@@ -198,8 +201,8 @@ class _BookmarksPageState extends State<BookmarksPage>
                                 : Container(),
                       )
                     : nodatafound(
-                        norestobookmarksstr[
-                            _globalcache.selectedlanguage.value]!,
+                        _globalcache.appstringrx[35]
+                            .string[_globalcache.selectedlanguage.value]!,
                         size),
               ),
               Obx(
@@ -231,8 +234,8 @@ class _BookmarksPageState extends State<BookmarksPage>
                             : Container(),
                       )
                     : nodatafound(
-                        nodishbookmarksstr[
-                            _globalcache.selectedlanguage.value]!,
+                        _globalcache.appstringrx[36]
+                            .string[_globalcache.selectedlanguage.value]!,
                         size),
               ),
             ],

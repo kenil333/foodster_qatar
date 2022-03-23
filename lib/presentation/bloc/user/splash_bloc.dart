@@ -10,9 +10,11 @@ class SplashBloc {
     Function setfav,
     Function setcache,
     Function setlangugae,
+    Function changeguest,
   ) async {
     final SharedPreferences _pref = await SharedPreferences.getInstance();
     final String _lang = _pref.getString("Language") ?? englishlangstr;
+    final bool _guest = _pref.getBool("Guest") ?? false;
     setlangugae(_lang);
     final List<NotificationModel> _notification =
         await FirebaseHelper.getnotifications();
@@ -27,24 +29,29 @@ class SplashBloc {
         _notification[i].date,
       );
     }
-    final String _name = _pref.getString("Name") ?? "null";
-    final String _phone = _pref.getString("Phone") ?? "null";
-    if (_name == "null" || _phone == "null") {
-      notlogin();
+    setfav();
+    if (_guest) {
+      changeguest();
+      forward();
     } else {
-      setfav();
-      if (_name == "logout" || _phone == "logout") {
+      final String _name = _pref.getString("Name") ?? "null";
+      final String _phone = _pref.getString("Phone") ?? "null";
+      if (_name == "null" || _phone == "null") {
         notlogin();
       } else {
-        await FirebaseHelper.loginfire(_name, _phone, setcache).then(
-          (String result) {
-            if (result == "Go") {
-              forward();
-            } else {
-              notlogin();
-            }
-          },
-        );
+        if (_name == "logout" || _phone == "logout") {
+          notlogin();
+        } else {
+          await FirebaseHelper.loginfire(_name, _phone, setcache).then(
+            (String result) {
+              if (result == "Go") {
+                forward();
+              } else {
+                notlogin();
+              }
+            },
+          );
+        }
       }
     }
   }

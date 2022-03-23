@@ -31,85 +31,153 @@ class ProfilePage extends StatelessWidget {
             child: Obx(
               () => Column(
                 children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.05,
-                      vertical: 20,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "",
-                          style: TextStyle(
-                            fontSize: size.width * 0.07,
-                            color: txtcol,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            pushNewScreen(
-                              context,
-                              screen: const EditProfileScreen(),
-                              withNavBar: false,
-                            );
-                          },
-                          child: Container(
-                            width: size.width * 0.09,
-                            height: size.width * 0.09,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: primarycol,
-                              borderRadius: BorderRadius.circular(100),
+                  _globalcache.geustrx.value
+                      ? Column(
+                          children: [
+                            const SizedBox(height: 30),
+                            Container(
+                              width: double.infinity,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: size.width * 0.06,
+                              ),
+                              child: Text(
+                                _globalcache.appstringrx[46].string[
+                                    _globalcache.selectedlanguage.value]!,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: size.width * 0.04,
+                                  color: txtcol,
+                                ),
+                              ),
                             ),
-                            child: Icon(
-                              Icons.edit,
-                              size: size.width * 0.05,
-                              color: whit,
+                            const SizedBox(height: 20),
+                            Row(
+                              children: [
+                                Expanded(child: Container()),
+                                GestureDetector(
+                                  onTap: () async {
+                                    pushNewScreen(
+                                      context,
+                                      screen: const LoginScreen(show: false),
+                                      withNavBar: false,
+                                    );
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.08,
+                                      vertical: 10,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: primarycol.withOpacity(0.2),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "${_globalcache.appstringrx[1].string[_globalcache.selectedlanguage.value]!}",
+                                          style: TextStyle(
+                                            fontSize: size.width * 0.05,
+                                            color: primarycol,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Expanded(child: Container()),
+                              ],
                             ),
-                          ),
+                          ],
+                        )
+                      : Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: size.width * 0.05,
+                                vertical: 20,
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "",
+                                    style: TextStyle(
+                                      fontSize: size.width * 0.07,
+                                      color: txtcol,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      pushNewScreen(
+                                        context,
+                                        screen: const EditProfileScreen(),
+                                        withNavBar: false,
+                                      );
+                                    },
+                                    child: Container(
+                                      width: size.width * 0.09,
+                                      height: size.width * 0.09,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        color: primarycol,
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                      ),
+                                      child: Icon(
+                                        Icons.edit,
+                                        size: size.width * 0.05,
+                                        color: whit,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            CustomLable(
+                              size: size,
+                              title: _globalcache.appstringrx[2]
+                                  .string[_globalcache.selectedlanguage.value]!,
+                              language: _globalcache.selectedlanguage.value,
+                            ),
+                            CustomContainer(
+                              size: size,
+                              containervalue: _globalcache.usernamerx.value,
+                              language: _globalcache.selectedlanguage.value,
+                            ),
+                            const SizedBox(height: 20),
+                            CustomLable(
+                              size: size,
+                              title: _globalcache.appstringrx[3]
+                                  .string[_globalcache.selectedlanguage.value]!,
+                              language: _globalcache.selectedlanguage.value,
+                            ),
+                            CustomContainer(
+                              size: size,
+                              containervalue: _globalcache.userphonerx.value,
+                              language: _globalcache.selectedlanguage.value,
+                            ),
+                            const SizedBox(height: 20),
+                            CustomLable(
+                              size: size,
+                              title: _globalcache.appstringrx[6]
+                                  .string[_globalcache.selectedlanguage.value]!,
+                              language: _globalcache.selectedlanguage.value,
+                            ),
+                            CustomContainer(
+                              size: size,
+                              containervalue: _globalcache.useremailrx.value,
+                              language: _globalcache.selectedlanguage.value,
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                  CustomLable(
-                    size: size,
-                    title: namestr[_globalcache.selectedlanguage.value]!,
-                    language: _globalcache.selectedlanguage.value,
-                  ),
-                  CustomContainer(
-                    size: size,
-                    containervalue: _globalcache.usernamerx.value,
-                    language: _globalcache.selectedlanguage.value,
-                  ),
-                  const SizedBox(height: 20),
-                  CustomLable(
-                    size: size,
-                    title: phonenumberstr[_globalcache.selectedlanguage.value]!,
-                    language: _globalcache.selectedlanguage.value,
-                  ),
-                  CustomContainer(
-                    size: size,
-                    containervalue: _globalcache.userphonerx.value,
-                    language: _globalcache.selectedlanguage.value,
-                  ),
-                  const SizedBox(height: 20),
-                  CustomLable(
-                    size: size,
-                    title: emailstr[_globalcache.selectedlanguage.value]!,
-                    language: _globalcache.selectedlanguage.value,
-                  ),
-                  CustomContainer(
-                    size: size,
-                    containervalue: _globalcache.useremailrx.value,
-                    language: _globalcache.selectedlanguage.value,
-                  ),
                   const SizedBox(height: 30),
                   CustomLable(
                     size: size,
-                    title:
-                        selectlanguagestr[_globalcache.selectedlanguage.value]!,
+                    title: _globalcache.appstringrx[0]
+                        .string[_globalcache.selectedlanguage.value]!,
                     language: _globalcache.selectedlanguage.value,
                   ),
                   const SizedBox(height: 10),
@@ -201,53 +269,56 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 30),
-                  Row(
-                    children: [
-                      Expanded(child: Container()),
-                      GestureDetector(
-                        onTap: () async {
-                          final SharedPreferences _pref =
-                              await SharedPreferences.getInstance();
-                          await _pref.setString("Email", "logout");
-                          await _pref.setString("Phone", "logout");
-                          pushNewScreen(
-                            context,
-                            screen: const LoginScreen(show: false),
-                            withNavBar: false,
-                          );
-                        },
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: size.width * 0.08,
-                            vertical: 10,
-                          ),
-                          decoration: BoxDecoration(
-                            color: primarycol.withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                logoutstr[_globalcache.selectedlanguage.value]!,
-                                style: TextStyle(
-                                  fontSize: size.width * 0.05,
-                                  color: primarycol,
-                                  fontWeight: FontWeight.bold,
+                  _globalcache.geustrx.value
+                      ? Container()
+                      : Row(
+                          children: [
+                            Expanded(child: Container()),
+                            GestureDetector(
+                              onTap: () async {
+                                final SharedPreferences _pref =
+                                    await SharedPreferences.getInstance();
+                                await _pref.setString("Email", "logout");
+                                await _pref.setString("Phone", "logout");
+                                pushNewScreen(
+                                  context,
+                                  screen: const LoginScreen(show: false),
+                                  withNavBar: false,
+                                );
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: size.width * 0.08,
+                                  vertical: 10,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: primarycol.withOpacity(0.2),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      _globalcache.appstringrx[15].string[
+                                          _globalcache.selectedlanguage.value]!,
+                                      style: TextStyle(
+                                        fontSize: size.width * 0.05,
+                                        color: primarycol,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Icon(
+                                      Icons.logout_outlined,
+                                      color: primarycol,
+                                      size: size.width * 0.07,
+                                    ),
+                                  ],
                                 ),
                               ),
-                              const SizedBox(width: 10),
-                              Icon(
-                                Icons.logout_outlined,
-                                color: primarycol,
-                                size: size.width * 0.07,
-                              ),
-                            ],
-                          ),
+                            ),
+                            Expanded(child: Container()),
+                          ],
                         ),
-                      ),
-                      Expanded(child: Container()),
-                    ],
-                  ),
                   const SizedBox(height: 30),
                 ],
               ),

@@ -10,7 +10,7 @@ class SingupBloc {
   final TextEditingController email = TextEditingController();
   final loading = BoolStream();
 
-  signup(Function forward) async {
+  signup(Function forward, Function setcache) async {
     loading.sink.add(true);
     if (name.text.isEmpty) {
       snack("Alert !", "Please Insert Name !", true);
@@ -24,6 +24,7 @@ class SingupBloc {
         phone.text,
         email.text.isEmpty ? "null" : email.text,
         DateFormat("yyyyMMdd").format(DateTime.now()),
+        setcache,
       ).then((bool success) async {
         if (!success) {
           snack("Alert !", "This Phone number already in Use !", true);
@@ -32,6 +33,7 @@ class SingupBloc {
           final SharedPreferences _pref = await SharedPreferences.getInstance();
           await _pref.setString("Name", name.text);
           await _pref.setString("Phone", phone.text);
+          await _pref.setBool("Guest", false);
           loading.sink.add(false);
           forward();
         }
